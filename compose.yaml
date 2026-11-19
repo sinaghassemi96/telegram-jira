@@ -1,0 +1,15 @@
+services:
+  bridge:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - bridge-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+volumes:
+  bridge-data:
